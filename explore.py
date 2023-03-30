@@ -13,4 +13,13 @@ df.columns=['dt','c_time', 'nchk', 'ndoc', 'apt','drug','kol','zak', 'roz','disc
 df['disc_barcode'] = df['disc_barcode'].astype('str').replace('\.0', '' , regex=True)
 #выводим типы данных df.dtypes
 df['disc_id'] = df['disc_id'].astype('str').replace('\.0', '' , regex=True)
-print(df.dtypes)
+#приведение к формату date //df['dt'] = pd.to_datetime(df['dt']).dt.day_of_year(сколько дней )
+df['dt'] = pd.to_datetime(df['dt']).dt.strftime('%d.%m.%Y')
+#возвращает уникальные значения //df['vzak'].unique()
+df['vzak'] = df['vzak'].astype('str').replace('1' , 'обычный ').replace('2' , 'интернет')
+#оценивает количество пропусков // df.isna().any()//fillna(0)Заменит пустые значения 0 ?//dropna()удалит пустые строки
+#dropna(axis=1) удалит столбцы в которых содержаться пустые ячейки
+
+
+
+
